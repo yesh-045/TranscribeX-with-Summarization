@@ -51,3 +51,8 @@ git clone <https://github.com/yesh-045/Video-Transcription-and-Summarzation.git>
          The process will generate subtitles and display them along with a summary of the content.
 
 4.*Interact with the chatbot to ask questions about the summary.*
+
+
+## Contributors
+1.yesh-045
+2.surya54101q
