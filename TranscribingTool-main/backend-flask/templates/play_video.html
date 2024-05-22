@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Video</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@latest/dist/vanta.net.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="vanta-bg"></div>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+        <h1>Our Club Project</h1>
+    </header>
+   
+    <main class="upload-main">
+        <section class="upload">
+            <h4 class="centered-heading">Your Video is ready with the generated subtitles.</h4>
+            <video id="my-video" controls class="cld-video-player cld-fluid">
+                <source src="https://res.cloudinary.com/djw9xl2nt/video/upload/{{ video_id }}.mp4" type="video/mp4">
+                <track src="{{ subtitle_url }}" kind="subtitles" srclang="en" label="English" default>
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-controls" style="text-align: center; margin-top: 20px;">
+    <a href="../static/SubtitleFiles/{{video_id}}.vtt" download>Download Subtitles</a>
+    <a href="{{ url_for('summarize') }}" class="button">Summarize</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Project. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/cloudinary-video-player"></script>
+    <script>
+        var player = cloudinary.videoPlayer('my-video', {
+            cloud_name: 'djw9xl2nt',
+            secure: true
+        });
+
+        player.on('sourcechanged', function() {
+            var textTracks = player.videojs.textTracks();
+            if (textTracks.length > 0) {
+                textTracks[0].mode = 'showing'; // Show subtitles by default
+            }
+        });
+
+        player.source({
+            publicId: '{{ video_id }}',
+            sourceTypes: ['mp4'],
+            tracks: [{
+                kind: 'subtitles',
+                src: '{{ subtitle_url }}',
+                srclang: 'en',
+                label: 'English',
+                default: true
+            }]
+        });
+    
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x561556,
+            backgroundColor: 0x19162e
+        });
+    </script>
+</body>
+</html>

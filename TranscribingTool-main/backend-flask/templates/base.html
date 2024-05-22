@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Project</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@latest/dist/vanta.net.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="vanta-bg"></div>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+        <h1>Our Club Project</h1>
+    </header>
+    <main class="home-main">
+        <div class="container">
+            <section class="hero">
+                <h2>Welcome to Our Club</h2>
+                <p>Discover our latest project and get involved in the community!</p>
+                <a href="{{ url_for('upload') }}" class="button">Upload Video</a>
+            </section>
+            <section class="features">
+                <div class="feature">
+                    <h3>Our Mission</h3>
+                    <p>We aim to bring the best experiences through our innovative projects.</p>
+                </div>
+                <div class="feature">
+                    <h3>Objective</h3>
+                    <p>It's an easy-to-use tool for generating and summarizing subtitles of videos into concise paragraphs.</p>
+                </div>
+                <div class="feature">
+                    <h3>Features</h3>
+                    <p>Upload your video, get subtitles, and summarize them in a few simple steps.</p>
+                </div>
+                <div class="feature">
+                    <h3>Join Us</h3>
+                    <p>Become a part of our club and contribute to exciting projects.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            &copy; 2024 Our Club. All Rights Reserved.
+        </div>
+    </footer>
+    <script>
+        // Initialize Vanta background
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x561556,
+            backgroundColor: 0x19162e
+        });
+    </script>
+</body>
+</html>

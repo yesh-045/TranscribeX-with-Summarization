@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="vanta-bg"></div>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+        <h1>Our Club Project</h1>
+    </header>
+   
+    <main class="upload-main">
+        <section class="upload">
+            <h2 class="centered-heading">Upload the video by choosing the mp4 type and click load button</h2>
+            <form id="upload-form" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" id="video-file" accept="video/*">
+                <button type="submit" class="button load-button" id="load-video">Load Video</button>
+            </form><br><br>
+            <div id="processing-messages" style="display: none;">
+                <h3 id="message">Processing your video, please wait...</h3><br>
+                <ul>
+                    <li id="convert-message" style="display: none;"><b>Converting to audio...</b></li>
+                    <li id="subtitle-message" style="display: none;"><b>Generating subtitles...</b></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Project. All rights reserved.</p>
+    </footer>
+    <script>
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x561556,
+            backgroundColor: 0x19162e
+        });
+
+        document.getElementById('video-file').addEventListener('change', function() {
+            document.getElementById('load-video').style.display = 'inline-block';
+        });
+
+        document.getElementById('upload-form').addEventListener('submit', function() {
+            document.getElementById('load-video').style.display = 'none';
+            document.getElementById('processing-messages').style.display = 'block';
+            document.getElementById('convert-message').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('convert-message').style.display = 'none';
+                document.getElementById('subtitle-message').style.display = 'block';
+            }, 50000); // Adjust this timeout as per your processing time
+        });
+    </script>
+</body>
+</html>
