@@ -18,7 +18,7 @@
    
     <main class="upload-main">
         <section class="upload">
-            <h2 class="centered-heading">Upload the video by choosing the mp4 type and click load button</h2>
+            <h2 class="centered-heading">Upload the video by choosing file and click load button</h2>
             <form id="upload-form" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file" id="video-file" accept="video/*">
                 <button type="submit" class="button load-button" id="load-video">Load Video</button>
