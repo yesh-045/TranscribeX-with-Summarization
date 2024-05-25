@@ -2,7 +2,7 @@ import re
 import requests
 import google.generativeai as genai
 
-genai.configure(api_key="YOUR_API_KEY")  # Replace 'YOUR_API_KEY' with your actual API key
+genai.configure(api_key="AIzaSyAlUo0FYZudT_DX-XdJuSApC9rCFrK55nA")  # Replace 'YOUR_API_KEY' with your actual API key
 
 generation_config = {
     "temperature": 0.9,
