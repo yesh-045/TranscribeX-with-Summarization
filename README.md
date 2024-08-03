@@ -1,6 +1,12 @@
 # Video Transcription and Summarization
 
 This project aims to transcribe video files and add the text subtitles and can be summarize the content using generative AI.
+#Sample:
+
+
+https://github.com/user-attachments/assets/1df1285b-bcd3-4c76-87ab-a45872513639
+
+
 
 ## Overview
 
