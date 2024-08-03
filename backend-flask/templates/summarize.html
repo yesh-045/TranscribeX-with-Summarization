@@ -5,7 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summarize Subtitles</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+<style>
+h3 {
+    text-align: center; /* Center-align the heading text */
+    margin-bottom: 20px; /* Space between heading and button */
+}
+
+.button-container {
+    text-align: center; /* Center-align the button within the container */
+    margin-bottom: 20px; /* Space below the button */
+}
+
+#chat-toggle-button {
+    display: inline-block; /* Inline block for better centering */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #561556, #4e4376);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Center text inside the button */
+}
+
+#chat-toggle-button:hover {
+    background: linear-gradient(135deg, #4e4376, #561556);
+}
+</style>
 <body>
     <div id="vanta-bg"></div>
     <header>
@@ -18,14 +48,22 @@
             <div id="summary-content">
                 {{ summary }}
             </div>
-            <br><br>
+            <br>
             <h3>You can also interact with our chatbot:</h3>
+            <div class="button-container">
+                <button id="chat-toggle-button">Chat</button>
+            </div>        
+
+
             <section class="summarize">
-                <h2>Chatbox</h2>
+               
                 <div id="chat-window">
-                    <div id="chat-output"></div>
-                    <div id="user-input">
-                        <input type="text" id="chat-input" placeholder="Type your message...">
+                    <div id="chat-output">
+                        <div class="message received">Hello! How can I help you today?</div>
+                        <div class="message sent"></div>
+                    </div>
+                    <div id="chat-input-container">
+                        <input type="text" id="chat-input" placeholder="Type a message...">
                         <button id="send-button">Send</button>
                     </div>
                 </div>
@@ -33,12 +71,11 @@
         </div>
     </main>
     <footer>
-        <center> Powered by Gemini-2024. &copy; Yesh-2024 </center>
+        <center>Powered by Gemini-2024. &copy; Yesh-2024</center>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@latest/dist/vanta.net.min.js"></script>
     <script>
-        // Initialize Vanta background
         VANTA.NET({
             el: "#vanta-bg",
             mouseControls: true,
@@ -68,16 +105,16 @@
             if (question) {
                 var chatOutput = document.getElementById('chat-output');
                 var newMessage = document.createElement('div');
-                newMessage.className = 'message user-message';
+                newMessage.className = 'message sent';
                 newMessage.innerText = question;
                 chatOutput.appendChild(newMessage);
                 
                 chatInput.value = ''; // Clear the input field
                 
-            var loadingMessage = document.createElement('div');
-            loadingMessage.className = 'message loading left'; // Align to the left
-            loadingMessage.innerText = 'Loading...';
-            chatOutput.appendChild(loadingMessage);
+                var loadingMessage = document.createElement('div');
+                loadingMessage.className = 'message received';
+                loadingMessage.innerText = 'Loading...';
+                chatOutput.appendChild(loadingMessage);
 
                 fetch('/ask_question', {
                     method: 'POST',
@@ -90,7 +127,7 @@
                 .then(data => {
                     chatOutput.removeChild(loadingMessage);
                     var newBotMessage = document.createElement('div');
-                    newBotMessage.className = 'message bot-message';
+                    newBotMessage.className = 'message received';
                     if (data.response) {
                         newBotMessage.innerText = "Bot: " + data.response;
                     } else {
@@ -100,6 +137,18 @@
                 });
             }
         }
+
+        // Chatbox toggle functionality
+        const chatToggleButton = document.getElementById('chat-toggle-button');
+        const chatWindow = document.getElementById('chat-window');
+
+        chatToggleButton.addEventListener('click', () => {
+            if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+                chatWindow.style.display = 'flex';
+            } else {
+                chatWindow.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
