@@ -4,7 +4,7 @@ This project aims to transcribe video files and add the text subtitles and can b
 #Sample:
 
 
-https://github.com/user-attachments/assets/1df1285b-bcd3-4c76-87ab-a45872513639
+https://github.com/user-attachments/assets/265d9f00-cc93-4f63-b9f8-e03d798087a3
 
 
 
@@ -27,10 +27,6 @@ The project consists of two main functionalities:
 
 1. Clone the repository:
 
-
-git clone <https://github.com/yesh-045/Video-Transcription-and-Summarzation.git>
-
-
 ## File Structure
 
 - *app.py*: Flask application for handling web requests and routes.
@@ -51,7 +47,7 @@ git clone <https://github.com/yesh-045/Video-Transcription-and-Summarzation.git>
 1.*Start the Flask server:*
     python app.py
     
-2.*Access the application via web browse*r at http://localhost:5000.
+2.*Access the application via web browser at http://localhost:5000.
 
 3.*Upload a video file for transcription.*
          The process will generate subtitles and display them along with a summary of the content.
