@@ -57,6 +57,7 @@ The project consists of two main functionalities:
 
 
 ## Contributors
-1.yesh-045
 
-2.surya54101q
+1.yesh-045 - Yeshwanth S
+
+2.surya54101q - Surya Narayanaa N T
